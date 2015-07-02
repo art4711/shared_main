@@ -1,4 +1,4 @@
-all: prog
+all: run
 
 l1.o: l1.c
 	cc -c -fPIC l1.c
@@ -11,3 +11,6 @@ p.o: p.c
 
 prog: libfoo.so p.o
 	cc -o prog -L. p.o -l foo
+
+run:: prog
+	LD_LIBRARY_PATH=. ./prog
